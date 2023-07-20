@@ -43,7 +43,7 @@ def split_text(text, max_tokens):
     return chunks
 
 def get_summary(text):
-    OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+    OPENAI_API_KEY = st.secrets['API']
     llm = OpenAI(openai_api_key=OPENAI_API_KEY)
     chain = load_summarize_chain(llm, chain_type="map_reduce")
     
@@ -63,11 +63,11 @@ def main():
 
     page = st.sidebar.selectbox(
         "Choose a page",
-        ("Website Scraper and Summarizer", "PDFJarvis"),
+        ("Website Scraper and Summarizer", "PDF Inquirer"),
     )
 
     if page == "Website Scraper and Summarizer":
-        st.subheader("This app uses Langchain and OpenAI to scrape a website and summarize it using GPT-3.")
+        st.subheader("This app uses a Vector DB, Langchain and OpenAI to scrape a website and summarize it using GPT-3.")
         st.write("Please enter a website URL and the app will scrape, then chunk the data and send to OpenAI to summarize.")
 
         with st.sidebar:
@@ -94,7 +94,7 @@ def main():
                     except Exception as e:
                         st.error(f"Error: {e}")
 
-    elif page == "PDFJarvis":
+    elif page == "PDF Inquirer":
         pdf_jarvis_main()
 
 if __name__ == "__main__":
