@@ -16,7 +16,7 @@ from sqlalchemy import text as sql_text
 from collections import deque
 
 #Initialize OpenAIEmbeddings
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+OPENAI_API_KEY = st.secrets['API']
 embedder = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)#TODO: replace with your API key
 
 def get_pdf_text(pdf_docs):
