@@ -47,11 +47,11 @@ def get_vectorstore(text_chunks):
 
 #function that takes a list of text chunks, creates embeddings and inserts them into a table in SingleStore
 def create_embeddings_and_insert(text_chunks):
-    ss_password = os.environ.get("SINGLESTORE_PASSWORD")
-    ss_host = os.environ.get("SINGLESTORE_HOST")
-    ss_user = os.environ.get("SINGLESTORE_USER")
-    ss_database = os.environ.get("SINGLESTORE_DATABASE")
-    ss_port = os.environ.get("SINGLESTORE_PORT")
+    ss_password = st.secrets['SINGLESTORE_PASSWORD']
+    ss_host = st.secrets['SINGLESTORE_HOST']
+    ss_user = st.secrets['SINGLESTORE_USER']
+    ss_database = st.secrets['SINGLESTORE_DATABASE']
+    ss_port = st.secrets['SINGLESTORE_PORT']
     connection = db.create_engine(
         f"mysql+pymysql://{ss_user}:{ss_password}@{ss_host}:{ss_port}/{ss_database}")
     with connection.begin() as conn:
@@ -103,11 +103,11 @@ def get_most_similar_text(query_text):
         LIMIT 1
     """)
 
-    ss_password = os.environ.get("SINGLESTORE_PASSWORD")
-    ss_host = os.environ.get("SINGLESTORE_HOST")
-    ss_user = os.environ.get("SINGLESTORE_USER")
-    ss_database = os.environ.get("SINGLESTORE_DATABASE")
-    ss_port = os.environ.get("SINGLESTORE_PORT")
+    ss_password = st.secrets['SINGLESTORE_PASSWORD']
+    ss_host = st.secrets['SINGLESTORE_HOST']
+    ss_user = st.secrets['SINGLESTORE_USER']
+    ss_database = st.secrets['SINGLESTORE_DATABASE']
+    ss_port = st.secrets['SINGLESTORE_PORT']
     connection = db.create_engine(
         f"mysql+pymysql://{ss_user}:{ss_password}@{ss_host}:{ss_port}/{ss_database}")
     with connection.begin() as conn:
@@ -122,11 +122,11 @@ def truncate_table():
         truncate table multiple_pdf_example
     """)
 
-    ss_password = os.environ.get("SINGLESTORE_PASSWORD")
-    ss_host = os.environ.get("SINGLESTORE_HOST")
-    ss_user = os.environ.get("SINGLESTORE_USER")
-    ss_database = os.environ.get("SINGLESTORE_DATABASE")
-    ss_port = os.environ.get("SINGLESTORE_PORT")
+    ss_password = st.secrets['SINGLESTORE_PASSWORD']
+    ss_host = st.secrets['SINGLESTORE_HOST']
+    ss_user = st.secrets['SINGLESTORE_USER']
+    ss_database = st.secrets['SINGLESTORE_DATABASE']
+    ss_port = st.secrets['SINGLESTORE_PORT']
     connection = db.create_engine(
         f"mysql+pymysql://{ss_user}:{ss_password}@{ss_host}:{ss_port}/{ss_database}")
     with connection.begin() as conn:
