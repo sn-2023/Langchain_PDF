@@ -189,7 +189,8 @@ def main():
                 create_embeddings_and_insert(text_chunks)
 
                 # Initialize the conversation chain here
-                llm = ChatOpenAI()
+                OPENAI_API_KEY = st.secrets['API']
+                llm = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
                 # llm = HuggingFaceHub(repo_id="google/flan-t5-xxl", model_kwargs={"temperature":0.5, "max_length":512})
                 memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
                 vectorstore = get_vectorstore(text_chunks)
