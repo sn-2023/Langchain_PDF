@@ -41,7 +41,7 @@ def split_text(text, max_tokens):
 
 # Function to get the summary of the text
 def get_summary(text):
-    OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY") # Get the OpenAI API Key from the environment variables
+    OPENAI_API_KEY = st.secrets['API'] # Get the OpenAI API Key from the environment variables
     llm = OpenAI(openai_api_key=OPENAI_API_KEY) # Create an OpenAI object
     chain = load_summarize_chain(llm, chain_type="map_reduce") # Load the summarization chain
     
