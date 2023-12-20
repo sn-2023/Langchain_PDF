@@ -67,8 +67,8 @@ def main():
     )
 
     if page == "Website Scraper and Summarizer":
-        st.subheader("This app uses a Vector DB, Langchain and OpenAI to scrape a website and summarize it using GPT-3.")
-        st.write("Please enter a website URL and the app will scrape, then chunk the data and send to OpenAI to summarize.")
+        st.subheader("Website Scraper and Summarizer scrapes the data, then chunks the data and sends to OpenAI to summarize.")
+        st.write("Please enter a website URL")
 
         with st.sidebar:
             url_input = st.text_input("Enter the website URL:")
