@@ -17,7 +17,7 @@ from collections import deque
 
 #Initialize OpenAIEmbeddings
 OPENAI_API_KEY = st.secrets['API']
-embedder = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)#TODO: replace with your API key
+embedder = OpenAIEmbeddings(model="text-embedding-3-large", openai_api_key=OPENAI_API_KEY)#TODO: replace with your API key
 
 def get_pdf_text(pdf_docs):
     text = ""
@@ -41,7 +41,7 @@ def get_text_chunks(text):
 #this method accepts a list of text chunks and returns a vectorstore
 def get_vectorstore(text_chunks):
     OPENAI_API_KEY = st.secrets['API']
-    embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+    embeddings = OpenAIEmbeddings(model="text-embedding-3-large", openai_api_key=OPENAI_API_KEY)
     # embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     return vectorstore
