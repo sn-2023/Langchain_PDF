@@ -112,7 +112,7 @@ def get_most_similar_text(query_text):
     connection = db.create_engine(
         f"mysql+pymysql://{ss_user}:{ss_password}@{ss_host}:{ss_port}/{ss_database}")
     with connection.begin() as conn:
-        result = conn.execute(stmt, {"embeddings": str(query_embedding)}).fetchall()
+        results = conn.execute(stmt, {"embeddings": str(query_embedding)}).fetchall()
 
     # Combine the text of the top N results
     combined_text = " ".join([result[0] for result in results])
