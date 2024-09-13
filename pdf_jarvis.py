@@ -101,7 +101,7 @@ def get_most_similar_text(query_text):
             DOT_PRODUCT_F32(JSON_ARRAY_PACK_F32(:embeddings), embeddings) AS similarity
         FROM multiple_pdf_example
         ORDER BY similarity DESC
-        LIMIT 1
+        LIMIT 3
     """)
 
     ss_password = st.secrets['SINGLESTORE_PASSWORD']
@@ -112,9 +112,11 @@ def get_most_similar_text(query_text):
     connection = db.create_engine(
         f"mysql+pymysql://{ss_user}:{ss_password}@{ss_host}:{ss_port}/{ss_database}")
     with connection.begin() as conn:
-        result = conn.execute(stmt, {"embeddings": str(query_embedding)}).fetchone()
+        result = conn.execute(stmt, {"embeddings": str(query_embedding)}).fetchall()
 
-    return result[0]
+    # Combine the text of the top N results
+    combined_text = " ".join([result[0] for result in results])
+    return combined_text
 
 def truncate_table():
 
