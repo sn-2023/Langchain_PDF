@@ -174,9 +174,9 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = deque(maxlen=100)
 
-    st.header("Chat with multiple PDFs :books:")
-    st.write("Uses Langchain, OpenAI LLMs , Embeddings , Vector DB and semantic search to pass the PDF content as Context to LLM to answer user questions.")
-    user_question = st.text_input("Ask a question about your documents:")
+    st.header("Chat with your Trust Advisor :books:")
+    st.write("Uses Langchain, OpenAI LLMs , Embeddings , Vector DB and semantic search to pass the Trust document content as Context to LLM to answer user questions.")
+    user_question = st.text_input("Ask a question about your Trust documents:")
 
     with st.sidebar:
         st.subheader("Your documents")
