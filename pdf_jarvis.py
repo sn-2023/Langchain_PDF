@@ -145,7 +145,7 @@ def handle_userinput(user_question):
         
         # Pass the most similar text from the book as a part of the prompt to ChatGPT
         prompt = (f"The user asked: {user_question}. Based on the trust document, "
-                  f"the relevant information includes the following excerpts: {most_similar_texts}. "
+                  f"the relevant information includes the following excerpts: {most_similar_text}. "
                   "Please provide a detailed and comprehensive response based on the above information.")        
         #print prompt
         #st.write(prompt)
