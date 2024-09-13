@@ -101,7 +101,7 @@ def get_most_similar_text(query_text):
             DOT_PRODUCT_F32(JSON_ARRAY_PACK_F32(:embeddings), embeddings) AS similarity
         FROM multiple_pdf_example
         ORDER BY similarity DESC
-        LIMIT 3
+        LIMIT 5
     """)
 
     ss_password = st.secrets['SINGLESTORE_PASSWORD']
@@ -144,8 +144,9 @@ def handle_userinput(user_question):
         most_similar_text = get_most_similar_text(user_question)
         
         # Pass the most similar text from the book as a part of the prompt to ChatGPT
-        prompt = f"The user asked: {user_question}. The most similar text from the documents is: {most_similar_text}"
-        
+        prompt = (f"The user asked: {user_question}. Based on the trust document, "
+                  f"the relevant information includes the following excerpts: {most_similar_texts}. "
+                  "Please provide a detailed and comprehensive response based on the above information.")        
         #print prompt
         #st.write(prompt)
 
